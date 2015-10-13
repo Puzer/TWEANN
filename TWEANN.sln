@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTWEANN", "TestTWEANN\TestTWEANN.csproj", "{341988FA-FFB6-4402-9A4D-AFD096EEDFDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWEANNLib", "TWEANNLib\TWEANNLib.csproj", "{5AED92E1-5EA7-4CDE-AB6A-D853762E6F91}"
+EndProject
+Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{341988FA-FFB6-4402-9A4D-AFD096EEDFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{341988FA-FFB6-4402-9A4D-AFD096EEDFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{341988FA-FFB6-4402-9A4D-AFD096EEDFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{341988FA-FFB6-4402-9A4D-AFD096EEDFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AED92E1-5EA7-4CDE-AB6A-D853762E6F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AED92E1-5EA7-4CDE-AB6A-D853762E6F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AED92E1-5EA7-4CDE-AB6A-D853762E6F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AED92E1-5EA7-4CDE-AB6A-D853762E6F91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
