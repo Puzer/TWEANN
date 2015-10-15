@@ -19,7 +19,7 @@ namespace TWEANNLib.NeuroEvolution
 
         protected override void Rollback()
         {
-            for (int i = mutations.Count - 1; i > 0; i--)
+            for (int i = mutations.Count - 1; i >= 0; i--)
                 mutations[i].RollbackMutation();
         }
     }

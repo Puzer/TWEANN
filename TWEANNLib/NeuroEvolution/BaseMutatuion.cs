@@ -3,6 +3,13 @@ namespace TWEANNLib.NeuroEvolution
 {
     public abstract class BaseMutatuion : IMutation
     {
+        /*
+        TODO: Написать тесты
+        каждая мутация должна быть проверена на:
+        1) после отката возвращаются те же значения что и были
+        2) Проверка на случайное создание и оставление циклов
+        */
+
         protected NeuralNetwork Network;
         public void Mutate(NeuralNetwork network)
         {

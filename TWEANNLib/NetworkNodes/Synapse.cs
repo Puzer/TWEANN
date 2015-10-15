@@ -7,7 +7,6 @@ namespace TWEANNLib.NetworkNodes
     {
         internal IComputingNode _input;
         private double _weight;
-
         internal double Weight
         {
             get
@@ -32,5 +31,12 @@ namespace TWEANNLib.NetworkNodes
         {
             return _input.Compute() * Weight;
         }
+
+        public void PassMetric(int i)
+        {
+            _input.PassMetric(i);
+        }
+
+        public bool HasComputed => _input.HasComputed;
     }
 }

@@ -39,6 +39,13 @@ namespace TWEANNLib.NetworkNodes
         {
             return Charge;
         }
+
+        public void PassMetric(int distance)
+        {
+            
+        }
+
+        public bool HasComputed => true;
     }
 
     [Serializable]
@@ -48,6 +55,11 @@ namespace TWEANNLib.NetworkNodes
         {
             return 1;
         }
+        public void PassMetric(int distance)
+        {
+
+        }
+        public bool HasComputed => true;
     }
 
     [Serializable]
@@ -63,5 +75,10 @@ namespace TWEANNLib.NetworkNodes
         {
             return Callback();
         }
+        public void PassMetric(int distance)
+        {
+
+        }
+        public bool HasComputed => true;
     }
 }

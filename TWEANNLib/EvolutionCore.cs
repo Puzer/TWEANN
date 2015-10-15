@@ -8,7 +8,7 @@ namespace TWEANNLib
     public class Species
     {
         public delegate void OnImprovementDelegate(Species sender, IMutation mutationType);
-
+        
         public Func<NeuralNetwork, double> FitnessFunc { get; }
         public NeuralNetwork Network { get; }
         public Dictionary<IMutation, double> MutationsCollection { get; }

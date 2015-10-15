@@ -14,7 +14,7 @@ namespace TWEANNLib
         internal readonly List<Effector> Effectors;
 
         private readonly List<Receptor> pushableReceptors;
-
+        
         public int InputCount
         {
             get
@@ -79,9 +79,36 @@ namespace TWEANNLib
                 throw new Exception("Count of receptors or effectors not equal 1");
 
             Neurons.ForEach(n => n.Reset());
-
+            
             pushableReceptors[0].Charge = value;
-            return Effectors[0].Solve();
+
+
+            for (int i = Neurons.Max(n => n.Distance); i >= 0; i--)
+            {
+                var neuronsOnLayer = Neurons.Where(n => n.Distance == i);
+                foreach (var neuron in neuronsOnLayer)
+                    neuron.Compute();
+
+            }
+
+            var result = Effectors[0].Solve();
+            if (LoopDetected())
+            {
+                NeuralBuilder.BuildDOTGraph(this, "outgraph.dot");
+            }
+
+            return result;
+        }
+
+        public void MetricsRecitate()
+        {
+            foreach (var effector in Effectors)
+                effector._input.PassMetric(0);
+        }
+
+        public bool LoopDetected()
+        {
+            return Neurons.Exists(n => n.LoopDetected);
         }
     }
 

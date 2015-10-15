@@ -15,15 +15,19 @@ namespace TestTWEANN
 
         private static void Main(string[] args)
         {
-            var network = NeuralBuilder.BuildFullConnected(Math.Tanh, 1, 5, 5, 1);
+            var network = NeuralBuilder.BuildFullConnected(Math.Tanh, 1, 20, 20, 1);
+            
+           
+
+
 
             var mutationDic = new Dictionary<IMutation, double>
             {
-                {new WeigthMutate(), 1},
+               // {new WeigthMutate(), 1},
                 {new ConnectSynapse(), 0.5},
                 {new RemoveSynapse(), 0.5},
-                {new ConnectNeuron(Math.Tanh), 0.4},
-                // {new MultiMutate(new[] {new WeigthMutate(), new WeigthMutate()}),  0.4}
+               // {new ConnectNeuron(Math.Tanh), 0.4},
+                 {new MultiMutate(new[] {new WeigthMutate(), new WeigthMutate()}),  0.4}
             };
 
             var specie = new Species(FitFunc, network, mutationDic);
@@ -37,7 +41,11 @@ namespace TestTWEANN
             {
                 specie.Iteration();
                 specie.Sensitivity *= 0.9999;
+                if (network.LoopDetected())
+                    Console.WriteLine("LOOP!");
             }
+            network.MetricsRecitate();
+            NeuralBuilder.BuildDOTGraph(network, "outgraph.dot");
         }
 
         private static double lastFit;

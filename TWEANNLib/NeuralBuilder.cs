@@ -234,7 +234,7 @@ namespace TWEANNLib
                 foreach (var neuron in network.Neurons.Where(n => n.InputSynapses.Exists(s => s._input == receptor)))
                 {
                     var weigth = neuron.InputSynapses.Find(s => s._input == receptor).Weight;
-                    sb.AppendLine("R_" + receptor.GetType().Name + "_" + receptor.GetHashCode() + " -> N_" + neuron.GetHashCode() + " [weight = " + (minWeigth + weigth).ToString("F4").Replace(',', '.') + " color=\"" + (weigth > 0 ? "red" : "blue") + "\" group=\"receptor\"];");
+                    sb.AppendLine("R_" + receptor.GetType().Name + "_" + receptor.GetHashCode() + " -> "+getNeuronName(neuron)+" [weight = " + (minWeigth + weigth).ToString("F4").Replace(',', '.') + " color=\"" + (weigth > 0 ? "red" : "blue") + "\" group=\"receptor\"];");
                 }
             }
 
@@ -243,18 +243,23 @@ namespace TWEANNLib
                 foreach (var neuron2 in network.Neurons.Where(n => n.InputSynapses.Exists(s => s._input == neuron1)))
                 {
                     var weigth = neuron2.InputSynapses.Find(s => s._input == neuron1).Weight;
-                    sb.AppendLine("N_" + neuron1.GetHashCode() + " -> N_" + neuron2.GetHashCode() + " [weight = " + (minWeigth + weigth).ToString("F4").Replace(',', '.') + " color=\"" + (weigth > 0 ? "red" : "blue") + "\" ];");
+                    sb.AppendLine(getNeuronName(neuron1)+" -> " + getNeuronName(neuron2)  + " [weight = " + (minWeigth + weigth).ToString("F4").Replace(',', '.') + " color=\"" + (weigth > 0 ? "red" : "blue") + "\" ];");
                 }
             }
 
             foreach (var effector in network.Effectors)
             {
-                sb.AppendLine("N_" + ((Neuron)(effector._input)).GetHashCode() + " -> E_" + effector.GetHashCode() + " [weight = 1 ];");
+                sb.AppendLine(getNeuronName((Neuron)(effector._input)) + " -> E_" + effector.GetHashCode() + " [weight = 1 ];");
             }
 
 
             sb.AppendLine("}");
             File.WriteAllText(file, sb.ToString());
+        }
+
+        private static string getNeuronName(Neuron neuron)
+        {
+            return "N_" + "Dist_"+ neuron.Distance + "_" + neuron.GetHashCode();
         }
 
     }

@@ -14,6 +14,8 @@ namespace TWEANNLib.NetworkNodes
         private bool _loopProtector;
         internal bool LoopDetected;
 
+        public int Distance;
+
         internal Neuron(Func<double, double> activationFunc, IEnumerable<Synapse> inputSynapse, int layer)
         {
             _activationFunc = activationFunc;
@@ -41,8 +43,12 @@ namespace TWEANNLib.NetworkNodes
 
         public double Compute()
         {
+
             if (InputSynapses.Count == 0)
+            {
+                _calculatedCompute = 0;
                 return 0;
+            }
 
             if (_calculatedCompute.HasValue)
                 return _calculatedCompute.Value;
@@ -50,17 +56,41 @@ namespace TWEANNLib.NetworkNodes
             //защита от рекурсивных вызовов
             if (_loopProtector)
             {
-                LoopDetected = true;
-                return 0;
+               LoopDetected = true;
+               return 0;
             }
 
+            if (InputSynapses.Any(syn => syn.HasComputed!=true))
+            {
+                throw new Exception("LOOP");
+            }
+
+
             _loopProtector = true;
-
             _calculatedCompute = _activationFunc(InputSynapses.Sum(s => s.Compute()));
-
             _loopProtector = false;
 
             return _calculatedCompute.Value;
+        }
+
+        public bool HasComputed
+        {
+            get { return InputSynapses.Count>0?InputSynapses.Any(s => s.HasComputed):true; }
+        }
+
+        public void PassMetric(int i)
+        {
+            if (_loopProtector)
+            {
+                LoopDetected = true;
+                return;
+            }
+
+            _loopProtector = true;
+            Distance = i + 1;
+            foreach (var item in InputSynapses)
+                item.PassMetric(Distance);
+            _loopProtector = false;
         }
     }
 }
