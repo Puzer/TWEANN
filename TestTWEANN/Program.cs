@@ -23,11 +23,12 @@ namespace TestTWEANN
 
             var mutationDic = new Dictionary<IMutation, double>
             {
-               // {new WeigthMutate(), 1},
+                {new WeigthMutate(), 1},
                 {new ConnectSynapse(), 0.5},
                 {new RemoveSynapse(), 0.5},
                // {new ConnectNeuron(Math.Tanh), 0.4},
-                 {new MultiMutate(new[] {new WeigthMutate(), new WeigthMutate()}),  0.4}
+                 {new MultiMutate(new[] {new WeigthMutate(), new WeigthMutate()}),  0.5},
+                 {new MultiMutate(new[] { new ConnectSynapse(), new ConnectSynapse()}),  0.2}
             };
 
             var specie = new Species(FitFunc, network, mutationDic);

@@ -60,10 +60,11 @@ namespace TWEANNLib.NetworkNodes
                return 0;
             }
 
+            /*
             if (InputSynapses.Any(syn => syn.HasComputed!=true))
             {
                 throw new Exception("LOOP");
-            }
+            }*/
 
 
             _loopProtector = true;

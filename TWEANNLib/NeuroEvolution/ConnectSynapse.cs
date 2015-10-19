@@ -11,6 +11,7 @@ namespace TWEANNLib.NeuroEvolution
 
         protected override void Mutation()
         {
+            //TODO: оптимизировать. Сделать добавление не только нейронов но и синапсов
             Network.MetricsRecitate();
 
             var rechoose = false;

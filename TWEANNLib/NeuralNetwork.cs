@@ -82,7 +82,7 @@ namespace TWEANNLib
             
             pushableReceptors[0].Charge = value;
 
-
+            /*
             for (int i = Neurons.Max(n => n.Distance); i >= 0; i--)
             {
                 var neuronsOnLayer = Neurons.Where(n => n.Distance == i);
@@ -90,12 +90,13 @@ namespace TWEANNLib
                     neuron.Compute();
 
             }
-
+            */
             var result = Effectors[0].Solve();
+            /*
             if (LoopDetected())
             {
                 NeuralBuilder.BuildDOTGraph(this, "outgraph.dot");
-            }
+            }*/
 
             return result;
         }
